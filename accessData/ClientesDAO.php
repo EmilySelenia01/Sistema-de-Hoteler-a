@@ -53,6 +53,10 @@ class ClientesDAO {
         $objeto->correo,
         $objeto->idCliente
     ]);
+
+    //
+
+    
 }
 }
 

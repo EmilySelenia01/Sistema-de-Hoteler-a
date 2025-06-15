@@ -49,6 +49,31 @@ class PaqueteDAO {
             $objeto->precio
         ]);
     }
+
+    //
+    public function eliminar($id) {
+    $sql = "DELETE FROM u484426513_ms225.paqueteh WHERE idPaquete = ?";
+    $stmt = $this->pdo->prepare($sql);
+    return $stmt->execute([$id]);
+    }
+
+    public function modificar(PaqueteH $objeto) {
+    $sql = "UPDATE u484426513_ms225.paqueteh 
+            SET nombre = ?, descripcion = ?, precio = ?
+            WHERE idPaquete = ?";
+    
+    $stmt = $this->pdo->prepare($sql);
+    return $stmt->execute([
+        $objeto->nombre,
+        $objeto->descripcion,
+        $objeto->precio,
+        $objeto->idPaquete
+    ]);
+    }
+
+
 }
+
+
 
 ?>

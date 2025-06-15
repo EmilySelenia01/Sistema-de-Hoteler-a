@@ -47,6 +47,26 @@ class TipoHabitacionDAO {
             $objeto->descripcion
         ]);
     }
+
+    public function eliminar($id) {
+    $sql = "DELETE FROM u484426513_ms225.tipoHabitacionh WHERE idTipo = ?";
+    $stmt = $this->pdo->prepare($sql);
+    return $stmt->execute([$id]);
+}
+
+public function modificar(TipoHabitacionH $objeto) {
+    $sql = "UPDATE u484426513_ms225.tipoHabitacionh 
+            SET nombre = ?, descripcion = ?
+            WHERE idTipo = ?";
+    
+    $stmt = $this->pdo->prepare($sql);
+    return $stmt->execute([
+        $objeto->nombre,
+        $objeto->descripcion,
+        $objeto->idTipo
+    ]);
+}
+
 }
 
 ?>

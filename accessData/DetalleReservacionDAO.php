@@ -64,6 +64,11 @@ public function modificar(DetalleReservacionH $objeto) {
         $objeto->idDetalle
     ]);
 }
+
+
+
+
+
 }
 
 ?>

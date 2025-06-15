@@ -11,7 +11,7 @@ class ServicioExtraDAO {
     }
 
     public function obtenerDatos() {
-        $stmt = $this->pdo->query("SELECT * FROM servicioeExtrah");
+        $stmt = $this->pdo->query("SELECT * FROM servicioExtrah");
 
         $result = [];
 
@@ -46,6 +46,27 @@ class ServicioExtraDAO {
             $objeto->descripcion
         ]);
     }
+
+    public function eliminar($id) {
+    $sql = "DELETE FROM u484426513_ms225.servicioExtrah WHERE idServicio = ?";
+    $stmt = $this->pdo->prepare($sql);
+    return $stmt->execute([$id]);
+    }
+
+    public function modificar(ServicioExtraH $objeto) {
+    $sql = "UPDATE u484426513_ms225.servicioExtrah 
+            SET nombre = ?, descripcion = ?
+            WHERE idServicio = ?";
+    
+    $stmt = $this->pdo->prepare($sql);
+    return $stmt->execute([
+        $objeto->nombre,
+        $objeto->descripcion,
+        $objeto->idServicio
+    ]);
+    }
+
+
 }
 
 ?>

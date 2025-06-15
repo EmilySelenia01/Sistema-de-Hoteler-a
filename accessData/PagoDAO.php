@@ -52,6 +52,31 @@ class PagoDAO {
             $objeto->fechaPago
         ]);
     }
+
+    //
+    public function eliminar($id) {
+    $sql = "DELETE FROM u484426513_ms225.pagoh WHERE idPago = ?";
+    $stmt = $this->pdo->prepare($sql);
+    return $stmt->execute([$id]);
+    }
+
+    public function modificar(PagoH $objeto) {
+    $sql = "UPDATE u484426513_ms225.pagoh 
+            SET idReservacion = ?, monto = ?, metodoPago = ?, fechaPago = ?
+            WHERE idPago = ?";
+    
+    $stmt = $this->pdo->prepare($sql);
+    return $stmt->execute([
+        $objeto->idReservacion,
+        $objeto->monto,
+        $objeto->metodoPago,
+        $objeto->fechaPago,
+        $objeto->idPago
+    ]);
+    }
+
+
+
 }
 
 ?>

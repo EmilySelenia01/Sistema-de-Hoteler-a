@@ -50,6 +50,29 @@ class HabitacionDAO {
             $objeto->precio
         ]);
     }
+
+    //
+    public function eliminar($id) {
+    $sql = "DELETE FROM u484426513_ms225.habitacionh WHERE idHabitacion = ?";
+    $stmt = $this->pdo->prepare($sql);
+    return $stmt->execute([$id]);
+    }
+
+    public function modificar(HabitacionH $objeto) {
+    $sql = "UPDATE u484426513_ms225.habitacionh 
+            SET numero = ?, idTipo = ?, precio = ?
+            WHERE idHabitacion = ?";
+    
+    $stmt = $this->pdo->prepare($sql);
+    return $stmt->execute([
+        $objeto->numero,
+        $objeto->idTipo,
+        $objeto->precio,
+        $objeto->idHabitacion
+    ]);
+    }
+
+
 }
 
 ?>

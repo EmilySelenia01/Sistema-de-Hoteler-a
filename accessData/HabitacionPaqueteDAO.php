@@ -49,6 +49,29 @@ class HabitacionPaqueteDAO {
             $objeto->idPaquete
         ]);
     }
+
+    ///
+    public function eliminar($idHabitacion, $idPaquete) {
+    $sql = "DELETE FROM u484426513_ms225.habitacionPaqueteh WHERE idHabitacion = ? AND idPaquete = ?";
+    $stmt = $this->pdo->prepare($sql);
+    return $stmt->execute([$idHabitacion, $idPaquete]);
+    }
+
+    public function modificar(HabitacionPaqueteH $objeto, $idHabitacionAnterior, $idPaqueteAnterior) {
+    $sql = "UPDATE u484426513_ms225.habitacionPaqueteh 
+            SET idHabitacion = ?, idPaquete = ?
+            WHERE idHabitacion = ? AND idPaquete = ?";
+    
+    $stmt = $this->pdo->prepare($sql);
+    return $stmt->execute([
+        $objeto->idHabitacion,
+        $objeto->idPaquete,
+        $idHabitacionAnterior,
+        $idPaqueteAnterior
+    ]);
+    }
+
+
 }
 
 ?>

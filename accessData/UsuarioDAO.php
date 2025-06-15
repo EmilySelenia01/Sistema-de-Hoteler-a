@@ -43,7 +43,7 @@ class UsuarioDAO {
         );
     }
 
-    public function insertar(Usuario $objeto) {
+    public function insertar(UsuarioH $objeto) {
         $sql = "INSERT INTO u484426513_ms225.usuarioh(nombreUsuario, claveHash, rol, estado) VALUES (?, ?, ?, ?)";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([
@@ -53,6 +53,28 @@ class UsuarioDAO {
             $objeto->estado
         ]);
     }
+
+    public function eliminar($id) {
+    $sql = "DELETE FROM u484426513_ms225.usuarioh WHERE idUsuario = ?";
+    $stmt = $this->pdo->prepare($sql);
+    return $stmt->execute([$id]);
+}
+
+public function modificar(UsuarioH $objeto) {
+    $sql = "UPDATE u484426513_ms225.usuarioh 
+            SET nombreUsuario = ?, claveHash = ?, rol = ?, estado = ?
+            WHERE idUsuario = ?";
+    
+    $stmt = $this->pdo->prepare($sql);
+    return $stmt->execute([
+        $objeto->nombreUsuario,
+        $objeto->claveHash,
+        $objeto->rol,
+        $objeto->estado,
+        $objeto->idUsuario
+    ]);
+}
+
 }
 
 ?>

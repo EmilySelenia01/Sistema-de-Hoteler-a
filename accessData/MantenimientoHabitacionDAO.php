@@ -42,7 +42,7 @@ class MantenimientoHabitacionDAO {
     }
 
     public function insertar(MantenimientoHabitacion $objeto) {
-        $sql = "INSERT INTO u484426513_ms225.mantenimiento_habitacion(idHabitacion, descripcion, fecha) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO u484426513_ms225.mantenimientoHabitacionh(idHabitacion, descripcion, fecha) VALUES (?, ?, ?)";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([
             $objeto->idHabitacion,
@@ -50,6 +50,31 @@ class MantenimientoHabitacionDAO {
             $objeto->fecha
         ]);
     }
+
+    ///
+
+    public function eliminar($id) {
+    $sql = "DELETE FROM u484426513_ms225.mantenimientoHabitacionh WHERE idMantenimiento = ?";
+    $stmt = $this->pdo->prepare($sql);
+    return $stmt->execute([$id]);
+    }
+
+    public function modificar(MantenimientoHabitacionH $objeto) {
+    $sql = "UPDATE u484426513_ms225.mantenimientoHabitacionh 
+            SET idHabitacion = ?, descripcion = ?, fecha = ?
+            WHERE idMantenimiento = ?";
+    
+    $stmt = $this->pdo->prepare($sql);
+    return $stmt->execute([
+        $objeto->idHabitacion,
+        $objeto->descripcion,
+        $objeto->fecha,
+        $objeto->idMantenimiento
+    ]);
+    }
+
+
+
 }
 
 ?>
