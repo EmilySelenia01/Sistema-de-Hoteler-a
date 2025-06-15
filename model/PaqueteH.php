@@ -1,5 +1,5 @@
 <?php
-class Paquete {
+class PaqueteH {
     public $idPaquete;
     public $nombre;
     public $descripcion;

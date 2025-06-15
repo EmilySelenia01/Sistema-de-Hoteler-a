@@ -1,5 +1,5 @@
 <?php
-class Reservacion {
+class ReservacionH {
     public $idReservacion;
     public $idCliente;
     public $fechaInicio;

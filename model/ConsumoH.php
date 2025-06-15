@@ -1,5 +1,5 @@
 <?php
-class Consumo {
+class ConsumoH {
     public $idConsumo;
     public $idReservacion;
     public $idServicio;

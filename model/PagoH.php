@@ -1,5 +1,5 @@
 <?php
-class Pago {
+class PagoH {
     public $idPago;
     public $idReservacion;
     public $monto;

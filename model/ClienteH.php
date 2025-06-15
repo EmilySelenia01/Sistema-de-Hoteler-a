@@ -1,7 +1,7 @@
 
 <?php
 
-class Cliente{
+class ClienteH{
     public $idCliente  ;    
     public $nombre ;
     public $correo ;

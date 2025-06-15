@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__.'/../accessoDatos/ClientesDAO.php';
+require_once __DIR__.'/../accessData/ClientesDAO.php';
 
 
 class ClientesApiController{
@@ -12,8 +12,6 @@ class ClientesApiController{
         $this->dao = new ClientesDAO();
     }
 
-
-    
     public function manejarRequest(){
         $metodo = $_SERVER['REQUEST_METHOD'];
 
@@ -43,7 +41,10 @@ class ClientesApiController{
                     echo json_encode(["mensaje" => "Datos almacenados"]);
 
                 break;   
-        
+            case 'PUT'  
+            break;
+            case'DElETE'
+            break;
         }
     }
 

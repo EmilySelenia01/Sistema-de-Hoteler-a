@@ -1,5 +1,5 @@
 <?php
-class HabitacionPaquete {
+class HabitacionPaqueteH {
     public $idHabitacion;
     public $idPaquete;
 

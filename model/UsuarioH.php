@@ -1,5 +1,5 @@
 <?php
-class Usuario {
+class UsuarioH{
     public $idUsuario;
     public $nombreUsuario;
     public $claveHash;

@@ -1,5 +1,5 @@
 <?php
-class ServicioExtra {
+class ServicioExtraH {
     public $idServicio;
     public $nombre;
     public $descripcion;

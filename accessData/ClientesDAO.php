@@ -1,7 +1,9 @@
 <?php
 
-require_once _DIR_.'/../misc/Conexion.php';
-require_once _DIR_.'/../models/Cliente.php';
+require_once __DIR__'/../model/ClienteH.php';
+require_once __DIR__'/../misc/Conexion.php';
+//require_once _DIR_.'/../misc/Conexion.php';
+//require_once _DIR_.'/../model/ClienteH.php';
 
 class ClientesDAO {
 
@@ -12,30 +14,31 @@ class ClientesDAO {
     }
 
     public function obtenerDatos() {
-        $stmt = $this->pdo->query("SELECT * FROM cliente");
+        $stmt = $this->pdo->query("SELECT * FROM clienteh");
 
         $result = [];
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $result[] = new Cliente($row['idCliente'], $row['nombre'], $row['correo']);
+            $result[] = new ClienteH($row['idCliente'], $row['nombre'], $row['correo']);
         }
 
         return $result;
     }
 
     public function obtenerPorId($id) {
-        $stmt = $this->pdo->prepare("SELECT * FROM u484426513_ms225.cliente WHERE idCliente = ?;");
+        $stmt = $this->pdo->prepare("SELECT * FROM u484426513_ms225.clienteh WHERE idCliente = ?;");
         $stmt->execute([$id]);
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return new Cliente($row['idCliente'], $row['nombre'], $row['correo']);
+        return new ClienteH($row['idCliente'], $row['nombre'], $row['correo']);
     }
 
-    public function insertar(Cliente $objeto) {
-        $sql = "INSERT INTO u484426513_ms225.clientes(nombre, correo) VALUES (?, ?)";
+    public function insertar(ClienteH $objeto) {
+        $sql = "INSERT INTO u484426513_ms225.clienteh(nombre, correo) VALUES (?, ?)";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([$objeto->nombre, $objeto->correo]);
     }
+    
 }
 
 ?>

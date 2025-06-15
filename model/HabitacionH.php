@@ -1,5 +1,5 @@
 <?php
-class Habitacion {
+class HabitacionH {
     public $idHabitacion;
     public $numero;
     public $idTipo;
