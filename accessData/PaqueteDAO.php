@@ -1,6 +1,6 @@
 <?php
-require_once _DIR_ . '/../misc/Conexion.php';
-require_once _DIR_ . '/../models/Paquete.php';
+require_once __DIR__.'/../misc/Conexion.php';
+require_once __DIR__. '/../model/PaqueteH.php';
 
 class PaqueteDAO {
 
@@ -11,12 +11,12 @@ class PaqueteDAO {
     }
 
     public function obtenerDatos() {
-        $stmt = $this->pdo->query("SELECT * FROM paquete");
+        $stmt = $this->pdo->query("SELECT * FROM paqueteh");
 
         $result = [];
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $result[] = new Paquete(
+            $result[] = new PaqueteH(
                 $row['idPaquete'],
                 $row['nombre'],
                 $row['descripcion'],
@@ -28,11 +28,11 @@ class PaqueteDAO {
     }
 
     public function obtenerPorId($id) {
-        $stmt = $this->pdo->prepare("SELECT * FROM u484426513_ms225.paquete WHERE idPaquete = ?;");
+        $stmt = $this->pdo->prepare("SELECT * FROM u484426513_ms225.paqueteh WHERE idPaquete = ?;");
         $stmt->execute([$id]);
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return new Paquete(
+        return new PaqueteH(
             $row['idPaquete'],
             $row['nombre'],
             $row['descripcion'],
@@ -40,8 +40,8 @@ class PaqueteDAO {
         );
     }
 
-    public function insertar(Paquete $objeto) {
-        $sql = "INSERT INTO u484426513_ms225.paquete(nombre, descripcion, precio) VALUES (?, ?, ?)";
+    public function insertar(PaqueteH $objeto) {
+        $sql = "INSERT INTO u484426513_ms225.paqueteh(nombre, descripcion, precio) VALUES (?, ?, ?)";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([
             $objeto->nombre,

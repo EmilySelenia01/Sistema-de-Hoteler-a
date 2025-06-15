@@ -1,7 +1,7 @@
 <?php
 
-require_once _DIR_ . '/../misc/Conexion.php';
-require_once _DIR_ . '/../models/Reservacion.php';
+require_once __DIR__ . '/../misc/Conexion.php';
+require_once __DIR__ . '/../model/ReservacionH.php';
 
 class ReservacionDAO {
 
@@ -12,12 +12,12 @@ class ReservacionDAO {
     }
 
     public function obtenerDatos() {
-        $stmt = $this->pdo->query("SELECT * FROM reservacion");
+        $stmt = $this->pdo->query("SELECT * FROM reservacionh");
 
         $result = [];
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $result[] = new Reservacion(
+            $result[] = new ReservacionH(
                 $row['idReservacion'],
                 $row['idCliente'],
                 $row['fechaInicio'],
@@ -30,11 +30,11 @@ class ReservacionDAO {
     }
 
     public function obtenerPorId($id) {
-        $stmt = $this->pdo->prepare("SELECT * FROM u484426513_ms225.reservacion WHERE idReservacion = ?;");
+        $stmt = $this->pdo->prepare("SELECT * FROM u484426513_ms225.reservacionh WHERE idReservacion = ?;");
         $stmt->execute([$id]);
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return new Reservacion(
+        return new ReservacionH(
             $row['idReservacion'],
             $row['idCliente'],
             $row['fechaInicio'],
@@ -43,8 +43,8 @@ class ReservacionDAO {
         );
     }
 
-    public function insertar(Reservacion $objeto) {
-        $sql = "INSERT INTO u484426513_ms225.reservacion(idCliente, fechaInicio, fechaFin, estado) VALUES (?, ?, ?, ?)";
+    public function insertar(ReservacionH $objeto) {
+        $sql = "INSERT INTO u484426513_ms225.reservacionh(idCliente, fechaInicio, fechaFin, estado) VALUES (?, ?, ?, ?)";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([
             $objeto->idCliente,

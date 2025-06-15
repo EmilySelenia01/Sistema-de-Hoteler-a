@@ -1,7 +1,7 @@
 <?php
 
-require_once _DIR_ . '/../misc/Conexion.php';
-require_once _DIR_ . '/../models/Usuario.php';
+require_once __DIR__ .'/../misc/Conexion.php';
+require_once __DIR__ . '/../model/UsuarioH.php';
 
 class UsuarioDAO {
 
@@ -12,12 +12,12 @@ class UsuarioDAO {
     }
 
     public function obtenerDatos() {
-        $stmt = $this->pdo->query("SELECT * FROM usuario");
+        $stmt = $this->pdo->query("SELECT * FROM usuarioh");
 
         $result = [];
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $result[] = new Usuario(
+            $result[] = new UsuarioH(
                 $row['idUsuario'],
                 $row['nombreUsuario'],
                 $row['claveHash'],
@@ -30,11 +30,11 @@ class UsuarioDAO {
     }
 
     public function obtenerPorId($id) {
-        $stmt = $this->pdo->prepare("SELECT * FROM u484426513_ms225.usuario WHERE idUsuario = ?;");
+        $stmt = $this->pdo->prepare("SELECT * FROM u484426513_ms225.usuarioh WHERE idUsuario = ?;");
         $stmt->execute([$id]);
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return new Usuario(
+        return new UsuarioH(
             $row['idUsuario'],
             $row['nombreUsuario'],
             $row['claveHash'],
@@ -44,7 +44,7 @@ class UsuarioDAO {
     }
 
     public function insertar(Usuario $objeto) {
-        $sql = "INSERT INTO u484426513_ms225.usuario(nombreUsuario, claveHash, rol, estado) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO u484426513_ms225.usuarioh(nombreUsuario, claveHash, rol, estado) VALUES (?, ?, ?, ?)";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([
             $objeto->nombreUsuario,
