@@ -53,6 +53,27 @@ class ConsumoDAO {
             $objeto->fecha
         ]);
     }
+     public function eliminar($id) {
+    $sql = "DELETE FROM u484426513_ms225.consumoh WHERE idConsumo = ?";
+    $stmt = $this->pdo->prepare($sql);
+    return $stmt->execute([$id]);
+    }
+    public function modificar(ConsumoH $objeto) {
+    $sql = "UPDATE u484426513_ms225.consumoh 
+            SET idReservacion = ?, idServicio = ?, cantidad = ?, fecha = ?
+            WHERE idConsumo = ?";
+    
+    $stmt = $this->pdo->prepare($sql);
+    return $stmt->execute([
+        $objeto->idReservacion,
+        $objeto->idServicio,
+        $objeto->cantidad,
+        $objeto->fecha,
+        $objeto->idConsumo // este es el ID del registro que se actualiza
+    ]);
+    }
+
+
 }
 
 ?>

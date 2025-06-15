@@ -24,7 +24,7 @@ class ClienteController{
     }
 
 
-    public function insertar(Clientes $objeto){
+    public function insertar(ClienteH $objeto){
         return $this->dao->insertar($objeto);
     }
 
@@ -37,9 +37,9 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST'){
     $nombre = $_POST['nombre'];
     $correo = $_POST['correo'];
 
-    $objeto = new Clientes(null, $idCliente, $nombre, $correo);
+    $objeto = new ClienteH(null, $idCliente, $nombre, $correo);
 
-    $controlador = new ClientesController();
+    $controlador = new ClienteController();
     $controlador->insertar($objeto);
 
     //header("Location: ../view/Clientes"); ssolo para viw ddel programa.

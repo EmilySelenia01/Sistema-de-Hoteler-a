@@ -33,7 +33,7 @@ class ClientesApiController{
                     $nombre = $datos['nombre'];
                     $correo = $datos['correo'];
 
-                    $objeto = new Clientes(null, $idCliente, $nombre, $correo);
+                    $objeto = new ClientesH(null, $idCliente, $nombre, $correo);
 
                     $this->dao->insertar($objeto);
 

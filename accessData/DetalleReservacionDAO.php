@@ -46,6 +46,24 @@ class DetalleReservacionDAO {
             $objeto->idHabitacion
         ]);
     }
+    public function eliminar($id) {
+    $sql = "DELETE FROM u484426513_ms225.detalleReservacionh WHERE idDetalle = ?";
+    $stmt = $this->pdo->prepare($sql);
+    return $stmt->execute([$id]);
+}
+
+public function modificar(DetalleReservacionH $objeto) {
+    $sql = "UPDATE u484426513_ms225.detalleReservacionh 
+            SET idReservacion = ?, idHabitacion = ?
+            WHERE idDetalle = ?";
+    
+    $stmt = $this->pdo->prepare($sql);
+    return $stmt->execute([
+        $objeto->idReservacion,
+        $objeto->idHabitacion,
+        $objeto->idDetalle
+    ]);
+}
 }
 
 ?>

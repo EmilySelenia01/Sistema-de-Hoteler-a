@@ -37,6 +37,23 @@ class ClientesDAO {
         return $stmt->execute([$objeto->nombre, $objeto->correo]);
     }
     
+    public function eliminar($id) {
+        $sql = "DELETE FROM u484426513_ms225.clienteh WHERE idCliente = ?";
+        $stmt = $this->pdo->prepare($sql);
+        return $stmt->execute([$id]);
+    }
+    public function modificar(ClienteH $objeto) {
+    $sql = "UPDATE u484426513_ms225.clienteh 
+            SET nombre = ?, correo = ?
+            WHERE idCliente = ?";
+
+    $stmt = $this->pdo->prepare($sql);
+    return $stmt->execute([
+        $objeto->nombre,
+        $objeto->correo,
+        $objeto->idCliente
+    ]);
+}
 }
 
 ?>
