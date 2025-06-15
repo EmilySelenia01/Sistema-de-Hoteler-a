@@ -1,7 +1,7 @@
 <?php
 
-require_once _DIR_ . '/../misc/Conexion.php';
-require_once _DIR_ . '/../models/HabitacionPaquete.php';
+require_once __DIR__ .'/../misc/Conexion.php';
+require_once __DIR__ .'/../model/HabitacionPaqueteH.php';
 
 class HabitacionPaqueteDAO {
 
@@ -12,12 +12,12 @@ class HabitacionPaqueteDAO {
     }
 
     public function obtenerDatos() {
-        $stmt = $this->pdo->query("SELECT * FROM habitacion_paquete");
+        $stmt = $this->pdo->query("SELECT * FROM habitacionPaqueteh");
 
         $result = [];
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $result[] = new HabitacionPaquete(
+            $result[] = new HabitacionPaqueteH(
                 $row['idHabitacion'],
                 $row['idPaquete']
             );
@@ -27,12 +27,12 @@ class HabitacionPaqueteDAO {
     }
 
     public function obtenerPorId($idHabitacion, $idPaquete) {
-        $stmt = $this->pdo->prepare("SELECT * FROM u484426513_ms225.habitacion_paquete WHERE idHabitacion = ? AND idPaquete = ?;");
+        $stmt = $this->pdo->prepare("SELECT * FROM u484426513_ms225.habitacionPaqueteh WHERE idHabitacion = ? AND idPaquete = ?;");
         $stmt->execute([$idHabitacion, $idPaquete]);
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($row) {
-            return new HabitacionPaquete(
+            return new HabitacionPaqueteH(
                 $row['idHabitacion'],
                 $row['idPaquete']
             );
@@ -41,8 +41,8 @@ class HabitacionPaqueteDAO {
         }
     }
 
-    public function insertar(HabitacionPaquete $objeto) {
-        $sql = "INSERT INTO u484426513_ms225.habitacion_paquete(idHabitacion, idPaquete) VALUES (?, ?)";
+    public function insertar(HabitacionPaqueteH $objeto) {
+        $sql = "INSERT INTO u484426513_ms225.habitacionPaqueteh(idHabitacion, idPaquete) VALUES (?, ?)";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([
             $objeto->idHabitacion,

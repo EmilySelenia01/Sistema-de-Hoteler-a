@@ -1,7 +1,7 @@
 <?php
 
-require_once _DIR_ . '/../misc/Conexion.php';
-require_once _DIR_ . '/../models/Habitacion.php';
+require_once __DIR__ . '/../misc/Conexion.php';
+require_once __DIR__ .'/../model/HabitacionH.php';
 
 class HabitacionDAO {
 
@@ -12,12 +12,12 @@ class HabitacionDAO {
     }
 
     public function obtenerDatos() {
-        $stmt = $this->pdo->query("SELECT * FROM habitacion");
+        $stmt = $this->pdo->query("SELECT * FROM habitacionh");
 
         $result = [];
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $result[] = new Habitacion(
+            $result[] = new HabitacionH(
                 $row['idHabitacion'],
                 $row['numero'],
                 $row['idTipo'],
@@ -29,11 +29,11 @@ class HabitacionDAO {
     }
 
     public function obtenerPorId($id) {
-        $stmt = $this->pdo->prepare("SELECT * FROM u484426513_ms225.habitacion WHERE idHabitacion = ?;");
+        $stmt = $this->pdo->prepare("SELECT * FROM u484426513_ms225.habitacionh WHERE idHabitacion = ?;");
         $stmt->execute([$id]);
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return new Habitacion(
+        return new HabitacionH(
             $row['idHabitacion'],
             $row['numero'],
             $row['idTipo'],
@@ -41,8 +41,8 @@ class HabitacionDAO {
         );
     }
 
-    public function insertar(Habitacion $objeto) {
-        $sql = "INSERT INTO u484426513_ms225.habitacion(numero, idTipo, precio) VALUES (?, ?, ?)";
+    public function insertar(HabitacionH $objeto) {
+        $sql = "INSERT INTO u484426513_ms225.habitacionh(numero, idTipo, precio) VALUES (?, ?, ?)";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([
             $objeto->numero,

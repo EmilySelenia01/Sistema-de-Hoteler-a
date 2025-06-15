@@ -1,9 +1,7 @@
 <?php
 
-require_once __DIR__'/../model/ClienteH.php';
-require_once __DIR__'/../misc/Conexion.php';
-//require_once _DIR_.'/../misc/Conexion.php';
-//require_once _DIR_.'/../model/ClienteH.php';
+require_once __DIR__ .'/../model/ClienteH.php';
+require_once __DIR__ .'/../misc/Conexion.php';
 
 class ClientesDAO {
 

@@ -1,6 +1,6 @@
 <?php
-require_once _DIR_ . '/../misc/Conexion.php';
-require_once _DIR_ . '/../models/Pago.php';
+require_once __DIR__ . '/../misc/Conexion.php';
+require_once __DIR__ . '/../model/PagoH.php';
 
 class PagoDAO {
 
@@ -11,12 +11,12 @@ class PagoDAO {
     }
 
     public function obtenerDatos() {
-        $stmt = $this->pdo->query("SELECT * FROM pago");
+        $stmt = $this->pdo->query("SELECT * FROM pagoh");
 
         $result = [];
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $result[] = new Pago(
+            $result[] = new PagoH(
                 $row['idPago'],
                 $row['idReservacion'],
                 $row['monto'],
@@ -29,11 +29,11 @@ class PagoDAO {
     }
 
     public function obtenerPorId($id) {
-        $stmt = $this->pdo->prepare("SELECT * FROM u484426513_ms225.pago WHERE idPago = ?;");
+        $stmt = $this->pdo->prepare("SELECT * FROM u484426513_ms225.pagoh WHERE idPago = ?;");
         $stmt->execute([$id]);
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return new Pago(
+        return new PagoH(
             $row['idPago'],
             $row['idReservacion'],
             $row['monto'],
@@ -42,8 +42,8 @@ class PagoDAO {
         );
     }
 
-    public function insertar(Pago $objeto) {
-        $sql = "INSERT INTO u484426513_ms225.pago(idReservacion, monto, metodoPago, fechaPago) VALUES (?, ?, ?, ?)";
+    public function insertar(PagoH $objeto) {
+        $sql = "INSERT INTO u484426513_ms225.pagoh(idReservacion, monto, metodoPago, fechaPago) VALUES (?, ?, ?, ?)";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([
             $objeto->idReservacion,

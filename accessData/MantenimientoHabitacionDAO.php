@@ -1,7 +1,7 @@
 <?php
 
-require_once _DIR_ . '/../misc/Conexion.php';
-require_once _DIR_ . '/../models/MantenimientoHabitacion.php';
+require_once __DIR__ . '/../misc/Conexion.php';
+require_once __DIR__ .'/../model/MantenimientoHabitacionH.php';
 
 class MantenimientoHabitacionDAO {
 
@@ -12,12 +12,12 @@ class MantenimientoHabitacionDAO {
     }
 
     public function obtenerDatos() {
-        $stmt = $this->pdo->query("SELECT * FROM mantenimiento_habitacion");
+        $stmt = $this->pdo->query("SELECT * FROM mantenimientoHabitacionh");
 
         $result = [];
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $result[] = new MantenimientoHabitacion(
+            $result[] = new MantenimientoHabitacionH(
                 $row['idMantenimiento'],
                 $row['idHabitacion'],
                 $row['descripcion'],
@@ -29,11 +29,11 @@ class MantenimientoHabitacionDAO {
     }
 
     public function obtenerPorId($id) {
-        $stmt = $this->pdo->prepare("SELECT * FROM u484426513_ms225.mantenimiento_habitacion WHERE idMantenimiento = ?;");
+        $stmt = $this->pdo->prepare("SELECT * FROM u484426513_ms225.mantenimientoHabitacionh WHERE idMantenimiento = ?;");
         $stmt->execute([$id]);
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return new MantenimientoHabitacion(
+        return new MantenimientoHabitacionH(
             $row['idMantenimiento'],
             $row['idHabitacion'],
             $row['descripcion'],
